@@ -6,28 +6,28 @@ import Join from "../Join";
 import Landing from "../Landing";
 import Login from "../Login";
 // import Logout from "../Logout";
-// import PasswordForget from "../PasswordForget";
+import PasswordForget from "../PasswordForget";
 import Home from "../Home";
 import Account from "../Account";
 import Admin from "../Admin";
 
 import * as ROUTES from "../../constants/routes";
+import { withAuthentication } from "../Session";
 
-const App = () => {
+const App = props => {
   return (
     <Router>
       <Navigation />
-
       <hr />
-
       <Route exact path={ROUTES.LANDING} component={Landing} />
       <Route path={ROUTES.JOIN} component={Join} />
       <Route path={ROUTES.LOGIN} component={Login} />
       <Route path={ROUTES.HOME} component={Home} />
       <Route path={ROUTES.ACCOUNT} component={Account} />
       <Route path={ROUTES.ADMIN} component={Admin} />
+      <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
     </Router>
   );
 };
 
-export default App;
+export default withAuthentication(App);

@@ -39,6 +39,16 @@ const JoinFormBase = props => {
     props.firebase
       .createNewUser(email, passwordOne)
       .then(authUser => {
+        props.firebase.user(authUser.user.uid).set(
+          {
+            username,
+            email,
+            role: ""
+          },
+          { merge: true }
+        );
+      })
+      .then(() => {
         cleanUp();
         props.history.push(ROUTES.HOME);
       })
